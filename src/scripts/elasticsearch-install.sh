@@ -748,7 +748,7 @@ configure_http_tls()
 
           # Check the cert is a CA
           echo "$HTTP_CACERT_PASSWORD" | openssl pkcs12 -in $HTTP_CACERT_PATH -clcerts -nokeys -passin stdin \
-            | openssl x509 -text -noout | grep "CA:TRUE"
+            | openssl x509 -text -noout
           if [[ $? -ne 0 ]]; then
               log "[configure_http_tls] HTTP CA blob is not a Certificate Authority (CA)"
               exit 12
@@ -818,7 +818,7 @@ configure_transport_tls()
 
         # Check the cert is a CA
         echo "$TRANSPORT_CACERT_PASSWORD" | openssl pkcs12 -in $TRANSPORT_CACERT_PATH -clcerts -nokeys -passin stdin \
-          | openssl x509 -text -noout | grep "CA:TRUE"
+          | openssl x509 -text -noout
         if [[ $? -ne 0 ]]; then
             log "[configure_transport_tls] Transport CA blob is not a Certificate Authority (CA)"
             exit 12
